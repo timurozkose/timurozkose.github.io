@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timur Emre Ozkose | Portfolio</title>
+  <meta
+    name="description"
+    content="Portfolio of Timur Emre Ozkose, Data Scientist and ML/AI Researcher."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1a2b;
+      --card: rgba(18, 31, 48, 0.74);
+      --text: #e8f0fb;
+      --text-muted: #9db0c8;
+      --accent: #2aa9c2;
+      --accent-2: #4b6fff;
+      --line: rgba(142, 172, 204, 0.2);
+      --radius: 18px;
+      --max-width: 1120px;
+      --exp-accent: #3b82f6;
+      --exp-line: rgba(120, 140, 165, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, #0d2440 0%, var(--bg) 42%) fixed;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max-width), 92%);
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 38px;
+    }
+
+    /* Safe default: visible even if JS fails */
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Animations only enabled when JS adds .js-animate */
+    .js-animate .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .js-animate .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 17, 31, 0.8);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.25s ease;
+      position: relative;
+      padding: 4px 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #hero {
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 44px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -220px -100px auto auto;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(circle, rgba(42, 169, 194, 0.24), rgba(75, 111, 255, 0.08), transparent 70%);
+      animation: drift 12s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes drift {
+      0% { transform: translateY(0) translateX(0) scale(1); }
+      100% { transform: translateY(36px) translateX(-24px) scale(1.08); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.05rem, 5vw, 3.4rem);
+      line-height: 1.14;
+      margin-bottom: 12px;
+    }
+
+    .typed-row {
+      font-size: clamp(1.05rem, 2.4vw, 1.5rem);
+      color: #d9ecff;
+      margin-bottom: 18px;
+      min-height: 2.1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .typed-role {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .typed-cursor {
+      color: var(--accent);
+      font-weight: 600;
+      animation: typedBlink 0.8s infinite;
+    }
+
+    @keyframes typedBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .typed-row .label {
+      color: var(--text-muted);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+
+    .cta-row {
+      margin-top: 30px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 12px 18px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #f6fcff;
+    }
+
+    .btn-outline {
+      border-color: var(--line);
+      color: #d9ebff;
+      background: rgba(12, 22, 36, 0.45);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-photo-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(150deg, rgba(15, 28, 46, 0.82), rgba(9, 20, 34, 0.7));
+      border-radius: var(--radius);
+      padding: 18px;
+      max-width: 380px;
+      display: grid;
+      justify-items: center;
+      gap: 12px;
+    }
+
+    .hero-photo-shell {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 25px rgba(2, 10, 20, 0.35);
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      transform: none;
+    }
+
+    .availability-text {
+      color: var(--text);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      background: rgba(42, 169, 194, 0.14);
+      border: 1px solid rgba(42, 169, 194, 0.35);
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .about-logo-wrap {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    /* Logo at intrinsic dimensions (1080×324); only cap width on narrow viewports. */
+    .about-logo {
+      display: block;
+      width: 1080px;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .stats-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(13, 24, 39, 0.62);
+    }
+
+    .number {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: #e4f8ff;
+      line-height: 1.1;
+    }
+
+    .label {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      margin-top: 8px;
+    }
+
+    .skill-group {
+      margin-bottom: 26px;
+    }
+
+    .skill-group h3 {
+      font-size: 1.02rem;
+      margin-bottom: 12px;
+      color: #d9ecff;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(157, 176, 200, 0.25);
+      background: rgba(15, 28, 45, 0.72);
+      color: #d7e9fb;
+      font-size: 0.86rem;
+    }
+
+    .timeline {
+      position: relative;
+      margin-left: 8px;
+      padding-left: 32px;
+      border-left: 1px solid var(--exp-line);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 22px 22px 20px;
+      border: 1px solid rgba(80, 100, 125, 0.35);
+      border-radius: 12px;
+      background: rgba(8, 14, 24, 0.92);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -39px;
+      top: 26px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--exp-accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.22);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 0;
+    }
+
+    .timeline-role {
+      font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+      font-weight: 700;
+      color: #f8fafc;
+      line-height: 1.25;
+      margin: 0;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .timeline-meta {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .timeline-org {
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--exp-accent);
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .timeline-loc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin: 0;
+      margin-top: -6px;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline-bullets li {
+      position: relative;
+      padding-left: 1.35em;
+      color: #b8c9dc;
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .timeline-bullets li::before {
+      content: "\25B7";
+      position: absolute;
+      left: 0;
+      top: 0.05em;
+      font-size: 0.72em;
+      color: var(--exp-accent);
+      font-weight: 400;
+    }
+
+    .timeline-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 2px;
+    }
+
+    .exp-skill-tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(35, 45, 58, 0.95);
+      color: var(--exp-accent);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .pub-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pub-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    a.pub-title-link {
+      display: block;
+      transition: color 0.2s ease;
+    }
+
+    a.pub-title-link:hover {
+      color: var(--accent);
+    }
+
+    .pub-venue {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .status {
+      align-self: flex-start;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .status.published {
+      color: #83f1dd;
+      border-color: rgba(131, 241, 221, 0.45);
+      background: rgba(29, 94, 87, 0.22);
+    }
+
+    .status.review {
+      color: #a5c8ff;
+      border-color: rgba(140, 179, 255, 0.45);
+      background: rgba(35, 58, 97, 0.25);
+    }
+
+    .awards-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .award-item {
+      border: 1px solid var(--line);
+      background: rgba(13, 24, 39, 0.6);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: #d8e9fb;
+    }
+
+    .contact-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 28px;
+    }
+
+    .contact-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 13px;
+      color: #d5e7fa;
+      background: rgba(12, 22, 36, 0.48);
+      font-size: 0.9rem;
+    }
+
+    .contact-form {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(13, 24, 39, 0.64);
+      padding: 20px;
+      text-align: left;
+      display: grid;
+      gap: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(157, 176, 200, 0.26);
+      background: rgba(8, 15, 25, 0.85);
+      color: #e8f0fb;
+      font-family: inherit;
+      padding: 11px 12px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 18px 0 26px;
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+      }
+
+      .pub-grid {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .hamburger {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 72px;
+        right: 0;
+        width: min(82vw, 320px);
+        height: calc(100vh - 72px);
+        background: rgba(6, 14, 25, 0.96);
+        border-left: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 24px;
+        transform: translateX(100%);
+        transition: transform 0.28s ease;
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .stats-grid,
+      .pub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#hero">Timur Ozkose</a>
+      <div class="nav-actions">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">☰</button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#hero" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#publications">Research</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="section reveal">
+      <div class="container hero-grid">
+        <div class="hero-bg"></div>
+        <div class="hero">
+          <h1>Hi, I'm Timur Ozkose</h1>
+          <div class="typed-row">
+            <span class="label">I am a</span>
+            <span id="typed" class="typed-role"></span>
+          </div>
+          <p>
+            Published researcher at George Mason University building LLM pipelines, statistical
+            models, and data-driven systems.
+          </p>
+          <div class="cta-row">
+            <a href="#publications" class="btn btn-primary">View My Work</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+        </div>
+        <aside class="hero-photo-card" aria-label="Photo of Timur Ozkose">
+          <div class="hero-photo-shell">
+            <img class="hero-photo" src="./timur_pro_circle.png" alt="Portrait of Timur Ozkose" />
+          </div>
+          <p class="availability-text">Available for Opportunities</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <p class="section-subtitle">
+          I'm a junior at George Mason University studying Computational and Data Sciences with a Finance minor.
+          I work as a Research Assistant in two departments and as a Teaching Assistant, while publishing research
+          at the intersection of AI, LLMs, and applied data science. I'm passionate about building scalable AI
+          systems and turning complex data into actionable insight. Beyond my published and in-review work, I'm
+          actively advancing four upcoming research papers that are still in development with collaborators.
+        </p>
+        <div class="about-grid">
+          <div class="about-logo-wrap">
+            <img
+              class="about-logo"
+              src="./GMUlogo-2.png"
+              alt="George Mason University logo"
+              width="1080"
+              height="324"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="stats-grid">
+            <article class="stat">
+              <div class="number" data-target="2" data-suffix="+">2+</div>
+              <div class="label">Years Research Experience</div>
+            </article>
+            <article class="stat">
+              <div class="number" data-target="3">3</div>
+              <div class="label">Published / In-Review Papers</div>
+            </article>
+            <article class="stat">
+              <div class="number" data-target="3">3</div>
+              <div class="label">Concurrent Academic Roles</div>
+            </article>
+            <article class="stat">
+              <div class="number" data-target="3.80">3.80</div>
+              <div class="label">GPA</div>
+            </article>
+            <article class="stat">
+              <div class="number" data-target="4">4</div>
+              <div class="label">Upcoming Research Papers</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">
+          Technical and quantitative capabilities built through research, publication, and hands-on applied projects.
+        </p>
+
+        <div class="skill-group">
+          <h3>Programming & Tools</h3>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span><span class="tag">MySQL</span>
+            <span class="tag">MATLAB</span><span class="tag">NetLogo</span><span class="tag">NumPy</span><span class="tag">Pandas</span>
+            <span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Plotly</span><span class="tag">Scikit-learn</span>
+            <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Tableau</span><span class="tag">Power BI</span>
+            <span class="tag">Excel</span><span class="tag">Jupyter</span><span class="tag">Git/GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Data Science & ML</h3>
+          <div class="tags">
+            <span class="tag">Data Analytics</span><span class="tag">Data Visualization</span><span class="tag">Data Cleaning</span><span class="tag">Data Mining</span>
+            <span class="tag">Database Management &amp; Normalization</span><span class="tag">Star Schemas</span><span class="tag">Snowflake Modeling</span>
+            <span class="tag">EDA</span><span class="tag">Statistics</span><span class="tag">Sports Analytics</span><span class="tag">Social &amp; Network Analysis</span>
+            <span class="tag">Predictive Modeling</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Fine-Tuning</span>
+            <span class="tag">Feature Engineering</span><span class="tag">Model Evaluation</span><span class="tag">Agent-Based Modeling</span>
+            <span class="tag">NLP</span><span class="tag">LLMs</span><span class="tag">API Integration</span>
+            <span class="tag">Regression</span><span class="tag">Classification</span><span class="tag">Random Forest</span><span class="tag">XGBoost</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Finance & Quant</h3>
+          <div class="tags">
+            <span class="tag">Financial Management &amp; Modeling</span><span class="tag">Investment Analysis</span><span class="tag">Firm Valuation</span>
+            <span class="tag">Financial Institutions</span><span class="tag">Quantitative Analysis</span>
+            <span class="tag">Financial &amp; Managerial Accounting</span><span class="tag">Economics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">
+          Research, teaching, and an incoming industry internship focused on data systems, LLM workflows, analytics, and healthcare convening programs.
+        </p>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-role">AI &amp; Data Analytics Summer Intern</h3>
+              <span class="timeline-meta">Incoming · June 2026 – Aug 2026</span>
+            </div>
+            <p class="timeline-org">The Health Management Academy (THMA)</p>
+            <p class="timeline-loc">Arlington, VA · Full time</p>
+            <ul class="timeline-bullets">
+              <li>Extract, clean, and analyze Salesforce data to surface trends and actionable insights for executive forum programs serving top U.S. health system leaders.</li>
+              <li>Build and maintain dashboards and data visualizations that communicate performance metrics to internal stakeholders and C-suite audiences.</li>
+              <li>Develop and test automation workflows connecting data sources to reporting tools, reducing manual reporting overhead.</li>
+              <li>Work hands-on with emerging LLM tooling alongside leadership to support AI and analytics systems in active development.</li>
+            </ul>
+            <div class="timeline-skills">
+              <span class="exp-skill-tag">Salesforce</span>
+              <span class="exp-skill-tag">Dashboards</span>
+              <span class="exp-skill-tag">Data Visualization</span>
+              <span class="exp-skill-tag">Process Automation</span>
+              <span class="exp-skill-tag">LLMs &amp; AI Tools</span>
+              <span class="exp-skill-tag">Stakeholder Analytics</span>
+              <span class="exp-skill-tag">Excel</span>
+              <span class="exp-skill-tag">Healthcare Convening</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Research Assistant</h3>
+              <span class="timeline-meta">Aug 2023 – Present</span>
+            </div>
+            <p class="timeline-org">George Mason University · Department of Computational &amp; Data Sciences</p>
+            <p class="timeline-loc">Fairfax, VA</p>
+            <ul class="timeline-bullets">
+              <li>Built end-to-end GPT-4.1, GPT-5, Gemini 2.5 Pro, and Gemini 3 Pro powered pipelines for automated data ingestion and summarization.</li>
+              <li>Engineered automated extraction workflows for 536 research papers using Python + LLM APIs, reducing literature review time by 80%.</li>
+              <li>Cleaned and transformed 1,000+ records enabling statistical modeling and quantitative risk analysis.</li>
+            </ul>
+            <div class="timeline-skills">
+              <span class="exp-skill-tag">LLM Pipelines</span>
+              <span class="exp-skill-tag">Python</span>
+              <span class="exp-skill-tag">NLP</span>
+              <span class="exp-skill-tag">Research Automation</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Research Intern</h3>
+              <span class="timeline-meta">May 2025 – Aug 2025</span>
+            </div>
+            <p class="timeline-org">George Mason University · Department of Geoinformation Science</p>
+            <p class="timeline-loc">Fairfax, VA</p>
+            <ul class="timeline-bullets">
+              <li>Processed and analyzed 1,332 social media videos across TikTok, Facebook, and Instagram using Python.</li>
+              <li>Built data pipelines for collection, cleaning, and feature extraction across 3 platforms.</li>
+              <li>Won Best Poster — OSCAR 2025 Celebration.</li>
+              <li>Presented at APHA 2025 Annual Conference.</li>
+            </ul>
+            <div class="timeline-skills">
+              <span class="exp-skill-tag">Python</span>
+              <span class="exp-skill-tag">Data Pipelines</span>
+              <span class="exp-skill-tag">Social Media Analytics</span>
+              <span class="exp-skill-tag">EDA</span>
+            </div>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-header">
+              <h3 class="timeline-role">Teaching Assistant</h3>
+              <span class="timeline-meta">Jan 2024 – May 2026</span>
+            </div>
+            <p class="timeline-org">George Mason University · CDS 130: Computing for Scientists</p>
+            <p class="timeline-loc">Fairfax, VA</p>
+            <ul class="timeline-bullets">
+              <li>Supported MATLAB instruction for 170+ undergraduates.</li>
+              <li>Provided grading, tutoring, and guidance on data analysis.</li>
+            </ul>
+            <div class="timeline-skills">
+              <span class="exp-skill-tag">MATLAB</span>
+              <span class="exp-skill-tag">Teaching</span>
+              <span class="exp-skill-tag">Scientific Computing</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Publications & Research</h2>
+        <p class="section-subtitle">
+          Recent academic contributions spanning LLM automation, AI communication, and risk analytics.
+        </p>
+        <div class="pub-grid">
+          <article class="pub-card">
+            <span class="status review">In Review</span>
+            <h3 class="pub-title">Leveraging LLMs for Systematic Literature Review</h3>
+            <p class="pub-venue">IEEE WinterSim 2026</p>
+            <div class="tags">
+              <span class="tag">LLMs</span><span class="tag">NLP</span><span class="tag">Automation</span>
+            </div>
+          </article>
+
+          <article class="pub-card">
+            <span class="status published">Published</span>
+            <h3 class="pub-title">
+              <a
+                class="pub-title-link"
+                href="https://ieeexplore.ieee.org/document/11129070?source=authoralert"
+                target="_blank"
+                rel="noopener noreferrer"
+              >AI-Generated Messaging for Life Events</a>
+            </h3>
+            <p class="pub-venue">IEEE & TechRxiv 2025</p>
+            <div class="tags">
+              <span class="tag">NLP</span><span class="tag">ML Classification</span><span class="tag">AI Communication</span>
+            </div>
+          </article>
+
+          <article class="pub-card">
+            <span class="status published">Published</span>
+            <h3 class="pub-title">
+              <a
+                class="pub-title-link"
+                href="https://ieeexplore.ieee.org/document/11021204/authors#authors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Evolving Risk Communication</a>
+            </h3>
+            <p class="pub-venue">IEEE SIEDS 2025</p>
+            <div class="tags">
+              <span class="tag">Risk Analysis</span><span class="tag">AI Prompting</span><span class="tag">ML Models</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Awards & Recognition</h2>
+        <div class="awards-list">
+          <article class="award-item">🏆 Best Poster Award — OSCAR 2025 Celebration, George Mason University</article>
+          <article class="award-item">📄 Published Author — TechRxiv, IEEE (SIEDS 2025, WinterSim 2026)</article>
+          <article class="award-item">🎓 Dean's List — 6 consecutive semesters, GPA 3.80</article>
+          <article class="award-item">🎤 Conference Presenter — APHA 2025 Annual Conference</article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section reveal">
+      <div class="container contact-wrap">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle" style="margin: 0 auto 10px;">
+          Open to research collaborations, internships, and conversations around data science, ML, and AI systems.
+        </p>
+        <div class="contact-links">
+          <a class="contact-chip" href="mailto:teozkose@gmail.com">teozkose@gmail.com</a>
+          <a class="contact-chip" href="https://linkedin.com/in/tozkose" target="_blank" rel="noopener noreferrer">linkedin.com/in/tozkose</a>
+          <a
+            class="contact-chip"
+            href="https://scholar.google.com/citations?hl=en&amp;user=GYbyNLcAAAAJ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Google Scholar</a>
+          <a class="contact-chip" href="https://github.com/timurozkose" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+        <form class="contact-form" onsubmit="event.preventDefault();">
+          <div class="input-group">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="Your email" required />
+          </div>
+          <div class="input-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+          <p class="form-note">Form is UI only. No backend is connected.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Timur Emre Ozkose</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.16"></script>
+  <script>
+    // Enable animation mode only after JS starts successfully.
+    document.body.classList.add("js-animate");
+
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navLinks = [...document.querySelectorAll(".nav-links a")];
+    const revealEls = document.querySelectorAll(".reveal");
+    const counters = document.querySelectorAll(".number[data-target]");
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navLinks");
+    let countersAnimated = false;
+
+    // Guard typing initialization so it never crashes page startup.
+    const typedTarget = document.getElementById("typed");
+    if (window.Typed && typedTarget) {
+      new Typed("#typed", {
+        strings: [
+          "Data Scientist",
+          "AI Engineer",
+          "ML Researcher",
+          "ML/AI Researcher",
+          "LLM Engineer",
+          "Research Assistant"
+        ],
+        typeSpeed: 82,
+        backSpeed: 52,
+        backDelay: 1200,
+        startDelay: 450,
+        loop: true,
+        smartBackspace: true,
+        showCursor: true,
+        cursorChar: "|"
+      });
+    } else if (typedTarget) {
+      // Fallback loop if Typed.js is unavailable.
+      const roles = [
+        "Data Scientist",
+        "AI Engineer",
+        "ML Researcher",
+        "ML/AI Researcher",
+        "LLM Engineer",
+        "Research Assistant"
+      ];
+      let roleIdx = 0;
+      let charIdx = 0;
+      let deleting = false;
+
+      const tick = () => {
+        const role = roles[roleIdx];
+        if (!deleting) {
+          charIdx += 1;
+          typedTarget.textContent = role.slice(0, charIdx);
+          if (charIdx >= role.length) {
+            deleting = true;
+            setTimeout(tick, 1200);
+            return;
+          }
+        } else {
+          charIdx -= 1;
+          typedTarget.textContent = role.slice(0, Math.max(charIdx, 0));
+          if (charIdx <= 0) {
+            deleting = false;
+            roleIdx = (roleIdx + 1) % roles.length;
+          }
+        }
+        setTimeout(tick, deleting ? 42 : 78);
+      };
+      tick();
+    }
+
+    const activateNav = () => {
+      const scrollY = window.scrollY + 120;
+      let current = sections[0] ? sections[0].id : "hero";
+      sections.forEach((section) => {
+        if (scrollY >= section.offsetTop) current = section.id;
+      });
+      navLinks.forEach((link) => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    };
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("in-view");
+        });
+      }, { threshold: 0.16 });
+      revealEls.forEach((el) => revealObserver.observe(el));
+
+      const animateCounter = (element) => {
+        const target = Number(element.dataset.target);
+        const suffix = element.dataset.suffix || "";
+        const isDecimal = String(target).includes(".");
+        const duration = 1400;
+        const start = performance.now();
+        const step = (time) => {
+          const progress = Math.min((time - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = target * eased;
+          element.textContent = isDecimal ? value.toFixed(2) : Math.floor(value);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            element.textContent = (isDecimal ? target.toFixed(2) : target.toString()) + suffix;
+          }
+        };
+        requestAnimationFrame(step);
+      };
+
+      const aboutSection = document.getElementById("about");
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !countersAnimated) {
+            counters.forEach((counter) => animateCounter(counter));
+            countersAnimated = true;
+          }
+        });
+      }, { threshold: 0.45 });
+      if (aboutSection) counterObserver.observe(aboutSection);
+    } else {
+      // Fallback: show immediately and static counters.
+      revealEls.forEach((el) => el.classList.add("in-view"));
+      counters.forEach((counter) => {
+        const target = Number(counter.dataset.target);
+        const suffix = counter.dataset.suffix || "";
+        const isDecimal = String(target).includes(".");
+        counter.textContent = (isDecimal ? target.toFixed(2) : target.toString()) + suffix;
+      });
+    }
+
+    hamburger.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+      document.body.classList.toggle("menu-open", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
+      hamburger.textContent = isOpen ? "✕" : "☰";
+    });
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
+        hamburger.setAttribute("aria-expanded", "false");
+        hamburger.textContent = "☰";
+      });
+    });
+
+    window.addEventListener("scroll", activateNav);
+    activateNav();
+  </script>
+</body>
+</html>
