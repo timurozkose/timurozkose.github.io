@@ -534,6 +534,18 @@
       gap: 12px;
     }
 
+    .pub-card-link {
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pub-card-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(42, 169, 194, 0.55);
+      box-shadow: 0 10px 22px rgba(6, 18, 34, 0.28);
+    }
+
     .pub-title {
       font-weight: 700;
       font-size: 1rem;
@@ -591,65 +603,59 @@
     }
 
     .contact-wrap {
-      max-width: 760px;
+      max-width: 920px;
       margin: 0 auto;
       text-align: center;
     }
 
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0 28px;
-    }
-
-    .contact-chip {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 8px 13px;
-      color: #d5e7fa;
-      background: rgba(12, 22, 36, 0.48);
-      font-size: 0.9rem;
-    }
-
-    .contact-form {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(13, 24, 39, 0.64);
-      padding: 20px;
-      text-align: left;
+    .social-grid {
+      margin-top: 20px;
       display: grid;
-      gap: 12px;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 16px;
     }
 
-    .input-group label {
+    .social-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: rgba(13, 24, 39, 0.62);
+      text-align: center;
+      color: #d9ebff;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(42, 169, 194, 0.55);
+      box-shadow: 0 10px 22px rgba(6, 18, 34, 0.28);
+    }
+
+    .social-icon {
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      border: 1px solid rgba(42, 169, 194, 0.45);
+      background: rgba(42, 169, 194, 0.14);
+      display: grid;
+      place-items: center;
+      color: #a9dfff;
+      font-size: 1.15rem;
+    }
+
+    .social-label {
       display: block;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #eef7ff;
+    }
+
+    .social-handle {
+      display: block;
+      margin-top: 4px;
       font-size: 0.86rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .input-group input,
-    .input-group textarea {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(157, 176, 200, 0.26);
-      background: rgba(8, 15, 25, 0.85);
-      color: #e8f0fb;
-      font-family: inherit;
-      padding: 11px 12px;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .input-group textarea {
-      resize: vertical;
-      min-height: 120px;
-    }
-
-    .form-note {
-      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -708,7 +714,8 @@
       }
 
       .stats-grid,
-      .pub-grid {
+      .pub-grid,
+      .social-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -961,37 +968,35 @@
             </div>
           </article>
 
-          <article class="pub-card">
+          <a
+            class="pub-card pub-card-link"
+            href="https://ieeexplore.ieee.org/document/11129070?source=authoralert"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open AI-Generated Messaging for Life Events publication"
+          >
             <span class="status published">Published</span>
-            <h3 class="pub-title">
-              <a
-                class="pub-title-link"
-                href="https://ieeexplore.ieee.org/document/11129070?source=authoralert"
-                target="_blank"
-                rel="noopener noreferrer"
-              >AI-Generated Messaging for Life Events</a>
-            </h3>
+            <h3 class="pub-title">AI-Generated Messaging for Life Events</h3>
             <p class="pub-venue">IEEE & TechRxiv 2025</p>
             <div class="tags">
               <span class="tag">NLP</span><span class="tag">ML Classification</span><span class="tag">AI Communication</span>
             </div>
-          </article>
+          </a>
 
-          <article class="pub-card">
+          <a
+            class="pub-card pub-card-link"
+            href="https://ieeexplore.ieee.org/document/11021204/authors#authors"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Evolving Risk Communication publication"
+          >
             <span class="status published">Published</span>
-            <h3 class="pub-title">
-              <a
-                class="pub-title-link"
-                href="https://ieeexplore.ieee.org/document/11021204/authors#authors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Evolving Risk Communication</a>
-            </h3>
+            <h3 class="pub-title">Evolving Risk Communication</h3>
             <p class="pub-venue">IEEE SIEDS 2025</p>
             <div class="tags">
               <span class="tag">Risk Analysis</span><span class="tag">AI Prompting</span><span class="tag">ML Models</span>
             </div>
-          </article>
+          </a>
         </div>
       </div>
     </section>
@@ -1010,37 +1015,32 @@
 
     <section id="contact" class="section reveal">
       <div class="container contact-wrap">
-        <h2 class="section-title">Contact</h2>
+        <h2 class="section-title">Contact Me</h2>
         <p class="section-subtitle" style="margin: 0 auto 10px;">
           Open to research collaborations, internships, and conversations around data science, ML, and AI systems.
         </p>
-        <div class="contact-links">
-          <a class="contact-chip" href="mailto:teozkose@gmail.com">teozkose@gmail.com</a>
-          <a class="contact-chip" href="https://linkedin.com/in/tozkose" target="_blank" rel="noopener noreferrer">linkedin.com/in/tozkose</a>
-          <a
-            class="contact-chip"
-            href="https://scholar.google.com/citations?hl=en&amp;user=GYbyNLcAAAAJ"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Google Scholar</a>
-          <a class="contact-chip" href="https://github.com/timurozkose" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <div class="social-grid">
+          <a class="social-card" href="mailto:teozkose@gmail.com" aria-label="Email Timur Ozkose">
+            <span class="social-icon">✉</span>
+            <span class="social-label">Email</span>
+            <span class="social-handle">teozkose@gmail.com</span>
+          </a>
+          <a class="social-card" href="https://linkedin.com/in/tozkose" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
+            <span class="social-icon">in</span>
+            <span class="social-label">LinkedIn</span>
+            <span class="social-handle">linkedin.com/in/tozkose</span>
+          </a>
+          <a class="social-card" href="https://scholar.google.com/citations?hl=en&amp;user=GYbyNLcAAAAJ" target="_blank" rel="noopener noreferrer" aria-label="Open Google Scholar profile">
+            <span class="social-icon">G</span>
+            <span class="social-label">Google Scholar</span>
+            <span class="social-handle">scholar.google.com</span>
+          </a>
+          <a class="social-card" href="https://github.com/timurozkose" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile">
+            <span class="social-icon">⌘</span>
+            <span class="social-label">GitHub</span>
+            <span class="social-handle">github.com/timurozkose</span>
+          </a>
         </div>
-        <form class="contact-form" onsubmit="event.preventDefault();">
-          <div class="input-group">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required />
-          </div>
-          <div class="input-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="Your email" required />
-          </div>
-          <div class="input-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-          </div>
-          <button class="btn btn-primary" type="submit">Send Message</button>
-          <p class="form-note">Form is UI only. No backend is connected.</p>
-        </form>
       </div>
     </section>
   </main>
